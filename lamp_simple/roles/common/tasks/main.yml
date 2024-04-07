@@ -18,7 +18,7 @@
   service:
     name: ntpd
     state: started
-    enabled: yes
+    enabled: true
   tags: ntp
 
 - name: test to see if selinux is running
