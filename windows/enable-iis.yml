@@ -7,8 +7,8 @@
   tasks:
     - name: Install IIS
       win_feature:
-        name: "Web-Server"
+        name: Web-Server
         state: present
-        restart: yes
-        include_sub_features: yes
-        include_management_tools: yes
+        restart: true
+        include_sub_features: true
+        include_management_tools: true
