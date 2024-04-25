@@ -4,7 +4,6 @@
 - name: Create the mongos startup file
   template: src=mongos.j2 dest=/etc/init.d/mongos mode=0655
 
-
 - name: Create the mongos configuration file
   template: src=mongos.conf.j2 dest=/etc/mongos.conf
 
