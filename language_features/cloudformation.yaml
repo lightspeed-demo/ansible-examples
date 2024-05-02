@@ -29,17 +29,17 @@
   # Launch the cloudformation-example.json template.  Register the output.
 
   tasks:
-  - name: launch ansible cloudformation example
-    cloudformation: >
-      stack_name="ansible-cloudformation" state=present
-      region=us-east-1 disable_rollback=true
-      template=files/cloudformation-example.json
-    args:
-      template_parameters:
-        KeyName: jmartin
-        DiskType: ephemeral
-        InstanceType: m1.small
-        ClusterSize: 3
-    register: stack
-  - name: show stack outputs
-    debug: msg="My stack outputs are {{stack.stack_outputs}}"
+    - name: launch ansible cloudformation example
+      cloudformation: >
+        stack_name="ansible-cloudformation" state=present
+        region=us-east-1 disable_rollback=true
+        template=files/cloudformation-example.json
+      args:
+        template_parameters:
+          KeyName: jmartin
+          DiskType: ephemeral
+          InstanceType: m1.small
+          ClusterSize: 3
+      register: stack
+    - name: show stack outputs
+      debug: msg="My stack outputs are {{stack.stack_outputs}}"
