@@ -10,7 +10,6 @@
     password: $1$SomeSalt$UqddPX3r4kH3UL5jq5/ZI.
 
   tasks:
-
     # Walk through account creation, modification, and deletion
     - name: test basic user account creation
       user: name=tset comment=TsetUser group=users shell=/sbin/nologin createhome=no
