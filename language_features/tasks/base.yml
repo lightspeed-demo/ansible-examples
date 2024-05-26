@@ -1,5 +1,4 @@
 ---
-
 # this is the example of an included tasks file.  It contains a flat list of tasks
 # they can notify other tasks, and have full access to variables from 'vars'
 # or 'vars_files' directives.  Further, if ohai or facter were installed on
