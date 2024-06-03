@@ -6,16 +6,16 @@
     name: "{{ item }}"
     state: installed
   with_items:
-   - mysql-server
-   - MySQL-python
-   - libselinux-python
-   - libsemanage-python
+    - mysql-server
+    - MySQL-python
+    - libselinux-python
+    - libsemanage-python
 
 - name: Configure SELinux to start mysql on any port
   seboolean:
     name: mysql_connect_any
     state: true
-    persistent: yes
+    persistent: true
   when: sestatus.rc != 0
 
 - name: Create Mysql configuration file
@@ -23,13 +23,13 @@
     src: my.cnf.j2
     dest: /etc/my.cnf
   notify:
-  - restart mysql
+    - restart mysql
 
 - name: Start Mysql Service
   service:
     name: mysqld
     state: started
-    enabled: yes
+    enabled: true
 
 - name: insert iptables rule
   lineinfile:
@@ -37,7 +37,7 @@
     state: present
     regexp: "{{ mysql_port }}"
     insertafter: "^:OUTPUT "
-    line: "-A INPUT -p tcp  --dport {{ mysql_port }} -j  ACCEPT"
+    line: -A INPUT -p tcp  --dport {{ mysql_port }} -j  ACCEPT
   notify: restart iptables
 
 - name: Create Application Database
@@ -50,5 +50,5 @@
     name: "{{ dbuser }}"
     password: "{{ upassword }}"
     priv: "*.*:ALL"
-    host: '%'
+    host: "%"
     state: present
