@@ -4,10 +4,10 @@
 - name: Install MariaDB package
   yum: name={{ item }} state=installed
   with_items:
-   - mariadb-server
-   - MySQL-python
-   - libselinux-python
-   - libsemanage-python
+    - mariadb-server
+    - MySQL-python
+    - libselinux-python
+    - libsemanage-python
 
 - name: Configure SELinux to start mysql on any port
   seboolean: name=mysql_connect_any state=true persistent=yes
@@ -15,7 +15,7 @@
 - name: Create Mysql configuration file
   template: src=my.cnf.j2 dest=/etc/my.cnf
   notify:
-  - restart mariadb
+    - restart mariadb
 
 - name: Create MariaDB log file
   file: path=/var/log/mysqld.log state=touch owner=mysql group=mysql mode=0775
@@ -25,4 +25,4 @@
 
 - name: insert firewalld rule
   firewalld: port={{ mysql_port }}/tcp permanent=true state=enabled immediate=yes
-  ignore_errors: yes
+  ignore_errors: true
